@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Дело о признании Михаила не холодным</title>
+  <meta name="description" content="Нашёл, где поставить подпись">
+  <meta name="theme-color" content="#efe6da">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=PT+Mono&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- 1. Обложка дела -->
+    <section class="screen active" id="s-cover">
+      <div class="folder">
+        <div class="folder-tab">ДЕЛО</div>
+        <div class="seal-mini" aria-hidden="true">🐾</div>
+        <p class="mono small">Бюро тёплых отношений · г. Казань</p>
+        <h1 class="folder-title">Дело № 2110-МБ</h1>
+        <p class="folder-sub">о признании Михаила<br><b>НЕ&nbsp;холодным</b></p>
+        <dl class="folder-meta mono">
+          <div><dt>Заявитель:</dt><dd>Михаил (Медвежонок)</dd></div>
+          <div><dt>Эксперт:</dt><dd>Снежный барс</dd></div>
+          <div><dt>Основание:</dt><dd>«Мне уж можете поверить 😌»</dd></div>
+          <div><dt>Статус:</dt><dd class="status">ожидает подписи</dd></div>
+        </dl>
+        <div class="stamp stamp-cover" aria-hidden="true"><span>СРОЧНО</span></div>
+      </div>
+      <button class="btn" data-go="s-game">Ознакомиться с материалами дела</button>
+    </section>
+
+    <!-- 2. Экспертиза: растопи лёд -->
+    <section class="screen" id="s-game">
+      <p class="mono small">Этап 1 из 3 · Независимая экспертиза</p>
+      <h2 class="h2">Пока ты искала, где подписать,<br>медвежонок немного замёрз 🥶</h2>
+      <p class="lead">Нажимай на лёд, чтобы растопить его и измерить температуру</p>
+      <div class="lab">
+        <div class="ice-zone" id="ice-zone">
+          <div class="bear frozen" id="game-bear"></div>
+          <div class="ice" id="ice"><svg class="cracks" id="cracks" viewBox="0 0 200 220" preserveAspectRatio="none"></svg></div>
+        </div>
+        <div class="thermo" aria-label="Термометр">
+          <div class="thermo-tube"><div class="thermo-fill" id="thermo-fill"></div></div>
+          <div class="thermo-bulb"></div>
+          <div class="thermo-val mono" id="thermo-val">−15,0°</div>
+        </div>
+      </div>
+      <p class="verdict" id="verdict" hidden></p>
+      <button class="btn" id="to-act" hidden>Перейти к подписанию ✍️</button>
+    </section>
+
+    <!-- 3. Акт -->
+    <section class="screen" id="s-act">
+      <p class="mono small">Этап 2 из 3 · Подписание</p>
+      <article class="paper" id="act">
+        <header class="paper-head">
+          <div class="emblem" aria-hidden="true">🐾</div>
+          <p class="mono small">Бюро тёплых отношений</p>
+          <h2 class="paper-title">АКТ № 1</h2>
+          <p class="paper-sub">о признании Михаила не холодным</p>
+          <p class="mono small row-between"><span>г. Казань</span><span class="today"></span></p>
+        </header>
+        <p>Мы, нижеподписавшиеся, Снежный барс (далее — <b>Эксперт</b>) и Михаил (далее — <b>Медвежонок</b>), составили настоящий акт о нижеследующем:</p>
+        <ol class="clauses">
+          <li>Эксперт лично провёл проверку Медвежонка и холодным его <b>не признал</b>.</li>
+          <li>Температура Медвежонка по результатам экспертизы: <b class="temp-result">+37,2 °C</b> (выше нормы, но в пределах обаяния).</li>
+          <li>Мнение Эксперта является окончательным и обжалованию не подлежит, поскольку «со стороны виднее».</li>
+          <li>Медвежонок обязуется и впредь не казаться холодным.</li>
+          <li>Акт вступает в силу с момента подписания и действует бессрочно.</li>
+        </ol>
+        <div class="signs">
+          <div class="sign-block">
+            <p class="mono small">Медвежонок:</p>
+            <div class="sign-his"><span>Михаил</span></div>
+          </div>
+          <div class="sign-block">
+            <label class="mono small" for="name">Эксперт:</label>
+            <input id="name" class="name-input" placeholder="твоё имя" autocomplete="given-name" maxlength="40">
+            <div class="pad-wrap">
+              <canvas class="pad" id="pad-act" aria-label="Поле для подписи"></canvas>
+              <span class="pad-hint">распишись здесь пальцем или мышкой</span>
+              <button class="pad-clear" data-clear="pad-act" type="button">стереть</button>
+            </div>
+          </div>
+        </div>
+        <div class="stamp stamp-big" id="stamp-act" aria-hidden="true"><span>ПОДПИСАНО</span><small>Бюро тёплых отношений</small></div>
+      </article>
+      <button class="btn" id="sign-act" disabled>Подписать акт</button>
+      <div class="after" id="after-act" hidden>
+        <p class="lead">Кстати, ты упоминала доверенность… 😏</p>
+        <button class="btn" data-go="s-power">Оформить доверенность</button>
+      </div>
+    </section>
+
+    <!-- 4. Доверенность -->
+    <section class="screen" id="s-power">
+      <p class="mono small">Этап 3 из 3 · В случае чего</p>
+      <article class="paper" id="power">
+        <header class="paper-head">
+          <div class="emblem" aria-hidden="true">❄️</div>
+          <p class="mono small">Бюро тёплых отношений</p>
+          <h2 class="paper-title">ДОВЕРЕННОСТЬ</h2>
+          <p class="mono small row-between"><span>г. Казань</span><span class="today"></span></p>
+        </header>
+        <p>Я, <b class="her-name">Снежный барс</b>, настоящей доверенностью уполномочиваю Михаила (Медвежонка):</p>
+        <ul class="powers" id="powers"></ul>
+        <p class="small-print">Доверенность выдана без права передоверия и может быть отозвана только улыбкой.</p>
+        <div class="signs">
+          <div class="sign-block wide">
+            <p class="mono small">Доверитель:</p>
+            <div class="pad-wrap">
+              <canvas class="pad" id="pad-power" aria-label="Поле для подписи"></canvas>
+              <span class="pad-hint">и ещё одна подпись 🙏</span>
+              <button class="pad-clear" data-clear="pad-power" type="button">стереть</button>
+            </div>
+          </div>
+        </div>
+        <div class="stamp stamp-big blue" id="stamp-power" aria-hidden="true"><span>ЗАВЕРЕНО</span><small>Бюро тёплых отношений</small></div>
+      </article>
+      <button class="btn" id="sign-power" disabled>Заверить доверенность</button>
+    </section>
+
+    <!-- 5. Финал -->
+    <section class="screen" id="s-done">
+      <div class="bear happy" id="end-bear"></div>
+      <h2 class="h2">Дело закрыто 📁</h2>
+      <p class="lead" id="done-text">Документы подписаны. Осталось передать их Михаилу — обжалованию не подлежит 😌</p>
+      <img class="doc-preview" id="doc-preview" alt="Подписанные документы">
+      <div class="done-actions">
+        <button class="btn" id="share">Отправить Михаилу 📨</button>
+        <a class="btn ghost" id="download" download="delo-2110-MB.png">Сохранить копию</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
