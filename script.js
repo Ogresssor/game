@@ -2,7 +2,7 @@
    НАСТРОЙКИ
    ===================================================================== */
 
-// Telegram-бот (необязательно). Пустой token — ничего не отправляется: документы она передаёт кнопкой «Отправить Михаилу».
+// Telegram-бот (необязательно). Пустой token — ничего не отправляется: документы она передаёт кнопкой «Отправить Александру».
 const TELEGRAM = { token: '', chatId: '' };
 
 const TAPS = 14;           // сколько нажатий нужно, чтобы растопить лёд
@@ -85,7 +85,7 @@ function show(id) {
   if (id === 's-act' || id === 's-power') requestAnimationFrame(() => pads.forEach((p) => p.resize()));
 }
 $$('[data-go]').forEach((b) => b.addEventListener('click', () => {
-  if (b.dataset.go === 's-game') tgSend('📁 Она открыла «Дело о признании Михаила не холодным»');
+  if (b.dataset.go === 's-game') tgSend('📁 Она открыла «Дело о признании Александра не холодным»');
   show(b.dataset.go);
 }));
 
@@ -339,9 +339,9 @@ async function buildImage() {
   };
 
   // Акт
-  header('АКТ № 1', 'о признании Михаила не холодным');
+  header('АКТ № 1', 'о признании Александра не холодным');
   ctx.font = '30px "PT Serif"';
-  y = wrap(ctx, `Мы, нижеподписавшиеся, ${herName()} (Эксперт) и Михаил (Медвежонок), составили настоящий акт:`, P, y, TW, 42) + 10;
+  y = wrap(ctx, `Мы, нижеподписавшиеся, ${herName()} (Эксперт) и Александр (Медвежонок), составили настоящий акт:`, P, y, TW, 42) + 10;
   [
     'Эксперт лично провёл проверку Медвежонка и холодным его не признал.',
     `Температура Медвежонка по результатам экспертизы: ${fmtTemp(FINAL_TEMP)}C.`,
@@ -351,7 +351,7 @@ async function buildImage() {
   ].forEach((t, k) => { y = wrap(ctx, `${k + 1}. ${t}`, P, y, TW, 42) + 4; });
   y += 20;
   ctx.font = '22px "PT Mono"'; ctx.fillStyle = '#6f6874'; ctx.fillText('Медвежонок:', P, y);
-  ctx.font = '56px "Caveat"'; ctx.fillStyle = '#1f3f8a'; ctx.fillText('Михаил', P + 200, y + 8); y += 50;
+  ctx.font = '56px "Caveat"'; ctx.fillStyle = '#1f3f8a'; ctx.fillText('Александр', P + 200, y + 8); y += 50;
   const stampY1 = y + 60;
   signature(padAct, 'Эксперт:', herName());
   drawStamp(ctx, W - P - 120, stampY1, 'ПОДПИСАНО', '#c8324b');
@@ -364,7 +364,7 @@ async function buildImage() {
   // Доверенность
   header('ДОВЕРЕННОСТЬ');
   ctx.font = '30px "PT Serif"';
-  y = wrap(ctx, `Я, ${herName()}, настоящей доверенностью уполномочиваю Михаила (Медвежонка):`, P, y, TW, 42) + 10;
+  y = wrap(ctx, `Я, ${herName()}, настоящей доверенностью уполномочиваю Александра (Медвежонка):`, P, y, TW, 42) + 10;
   const chosen = $$('#powers input:checked').map((i) => POWERS[+i.value]);
   (chosen.length ? chosen : ['(пункты не отмечены — видимо, доверяет во всём 😏)']).forEach((t) => {
     ctx.font = '40px "Caveat"'; ctx.fillStyle = '#1f3f8a'; ctx.fillText('✓', P, y + 2);
@@ -397,7 +397,7 @@ async function finish() {
     if (!(navigator.canShare && navigator.canShare({ files: [docFile] }))) $('#share').hidden = true;
     const sent = await tgPhoto(blob,
       `📄 Дело № 2110-МБ закрыто!\nЭксперт: ${herName()}\nТемпература: ${fmtTemp(FINAL_TEMP)}C — холодность не обнаружена\nДоверенность: ${chosen.length} из ${POWERS.length} пунктов`);
-    if (sent) $('#done-text').textContent = 'Документы подписаны и уже переданы Михаилу. Обжалованию не подлежит 😌';
+    if (sent) $('#done-text').textContent = 'Документы подписаны и уже переданы Александру. Обжалованию не подлежит 😌';
   }, 'image/png');
 }
 
